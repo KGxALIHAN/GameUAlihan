@@ -92,8 +92,12 @@ class Magic(Hero):
         super().__init__(name, health, damage, 'BOOST')
 
     def apply_super_power(self, boss, heroes_list):
-        # TODO здесь будет реализация увеличения атаки
-        pass
+        boost_amount = 5  # Увеличиваем атаку на 5 единиц
+        for hero in heroes_list:
+            if hero.health > 0:  # Только живые герои получают усиление
+                hero.damage += boost_amount
+        print(f'Magic {self.name} boosted the attack of all heroes by {boost_amount}.')
+
 
 
 class Berserk(Hero):
@@ -155,9 +159,9 @@ class Avrora(Hero):
             print(f'{self.name} is now visible!')
 
 
-class Megumin(Hero):
+class Megumin(Hero):  # персонаж "Архимаг" базовых атак нет, есть только ультимативная способность, которая истощает её полностью.
     def __init__(self, name, health, damage):
-        super().__init__(name, health, damage, 'EXPLOSION')
+        super().__init__(name, health, 0, 'EXPLOSION')  # Устанавливаем базовый урон в 0
         self.can_use_ultimate = True
 
     def apply_super_power(self, boss, heroes_list):
@@ -206,7 +210,7 @@ def play_round(boss, heroes_list):
 
 
 def start_game():
-    boss = Boss(name='Minotavr', health=6000, damage=50)
+    boss = Boss(name='Minotavr', health=10000, damage=70)
 
     warrior_1 = Warrior(name='Asterix', health=290, damage=10)
     warrior_2 = Warrior(name='Obelix', health=280, damage=15)
