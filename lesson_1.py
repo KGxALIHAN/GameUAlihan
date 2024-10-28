@@ -7,7 +7,7 @@ class Transport:
     def change_color(self, new_color):
         print(f'{self.model} changed color to {new_color}')
         self.color = new_color
-
+abs()
 
 class Plane(Transport):
     def __init__(self, the_model, the_year, the_color):
